@@ -1,7 +1,20 @@
+#******************************************************************************#
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: hotph <hotph@student.42.fr>                +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/09/09 17:24:37 by hotph             #+#    #+#              #
+#    Updated: 2024/09/09 18:09:53 by hotph            ###   ########.fr        #
+#                                                                              #
+#******************************************************************************#
+
 NAME	=	libftprintf.a
 CC 		=	cc
 CFLAGS	=	-Wall -Wextra -Werror
-SCRS	=	ft_atoi.c\
+
+SRCS	=	ft_atoi.c\
 	ft_bzero.c\
 	ft_calloc.c\
 	ft_count_digits_int.c\
@@ -57,10 +70,24 @@ BSCRS	=	ft_atoi.c\
 	ft_utobase_directiv.c\
 	ft_str_only_chr.c\
 
-OBJS	=	$(SCRS:%.c=%.o)
-BOBJS	=	$(BSCRS:%.c=%.o)
+SRCS_DIR = srcs/
+OBJS_DIR = objs/
+INCLUDES_DIR = includes/
 
-all:	$(NAME)
+OBJS	=	$(addprefix ${OBJS_DIR}, ${SRCS:%.c=%.o})
+BOBJS	=	$(addprefix ${OBJS_DIR}, ${BSRCS:%.c=%.o})
+
+ifdef WITH_BONUS
+	SRCS = ${BSCRS}
+endif
+
+all:	${OBJS_DIR} $(NAME)
+
+${OBJS_DIR}:
+	mkdir -p ${OBJS_DIR}
+
+${OBJS_DIR}%.o: ${SRCS_DIR}%.c
+	${CC} ${CFLAGS} -I ${INCLUDES_DIR} -c $< -o $@
 
 $(NAME):	$(OBJS)
 	ar rcs $@ $^
@@ -70,8 +97,13 @@ bonus:	$(OBJS) $(BOBJS)
 
 clean:
 	rm -f $(OBJS) $(BOBJS)
+	rmdir $(OBJS_DIR) 2> /dev/null || true
 
 fclean:	clean
 	rm -f $(NAME)
+	rm -f a.out
 
 re: fclean all
+
+exec:	all
+	${CC} ${CFLAGS} main.c -L. -lftprintf
