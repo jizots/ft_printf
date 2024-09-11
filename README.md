@@ -3,7 +3,8 @@ printf関数を再実装しています。
 42tokyoの課題の一つです。  
 
 # Example
-
+<img width="574" alt="Screenshot 2024-09-11 at 11 13 46" src="https://github.com/user-attachments/assets/70b65362-1637-4ed1-86e5-524e98baa5f8">
+出力は全て再実装したft_printf関数によるものです。
 
 # 機能
 ft_printf関数は以下の出力が可能です。  
@@ -23,6 +24,8 @@ ft_printf関数は以下の出力が可能です。
 > ./a.out
  ....
 ```
+main.cファイルを変更して、他の出力を試すこともできます。  
+その場合は``make exec``を再度実行して、コンパイルし直してください。
 
 # 学び
 printf関数の再実装は、非常に興味深いプロジェクトでした。  
