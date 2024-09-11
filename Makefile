@@ -6,7 +6,7 @@
 #    By: hotph <hotph@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/09 17:24:37 by hotph             #+#    #+#              #
-#    Updated: 2024/09/09 18:09:53 by hotph            ###   ########.fr        #
+#    Updated: 2024/09/11 10:20:22 by hotph            ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -84,26 +84,31 @@ endif
 all:	${OBJS_DIR} $(NAME)
 
 ${OBJS_DIR}:
-	mkdir -p ${OBJS_DIR}
+	@mkdir -p ${OBJS_DIR}
 
 ${OBJS_DIR}%.o: ${SRCS_DIR}%.c
-	${CC} ${CFLAGS} -I ${INCLUDES_DIR} -c $< -o $@
+	@${CC} ${CFLAGS} -I ${INCLUDES_DIR} -c $< -o $@
 
 $(NAME):	$(OBJS)
-	ar rcs $@ $^
+	@ar rcs $@ $^
+	@echo "libftprintf.a created"
 
 bonus:	$(OBJS) $(BOBJS)
-	ar rcs $(NAME) $^
+	@ar rcs $(NAME) $^
+	@echo "libftprintf.a created with bonus"
 
 clean:
-	rm -f $(OBJS) $(BOBJS)
-	rmdir $(OBJS_DIR) 2> /dev/null || true
+	@rm -f $(OBJS) $(BOBJS)
+	@rmdir $(OBJS_DIR) 2> /dev/null || true
+	@echo "clean done"
 
 fclean:	clean
-	rm -f $(NAME)
-	rm -f a.out
+	@rm -f $(NAME)
+	@rm -f a.out
+	@echo "fclean done"
 
 re: fclean all
 
 exec:	all
-	${CC} ${CFLAGS} main.c -L. -lftprintf
+	@${CC} ${CFLAGS} main.c -L. -lftprintf
+	@echo "execution file created"
