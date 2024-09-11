@@ -18,16 +18,14 @@ int main()
     ft_printf("Prints a NULL pointer: %p\n", NULL);
     ft_printf("Prints a too big number: %d\n", 2147483649);
     ft_printf("Prints a negative number: %d\n", -42);
-    ft_printf("Field width: [%10d]\n", 42);
-    ft_printf("Use '-' flag: [%-10d]\n", 42);
-    ft_printf("Use '0' flag: [%010d]\n", 42);
-    ft_printf("Use '.' flag: [%.10d]\n", 42);
-    ft_printf("Use '.' flag: [%.10d]\n", -42);
+    ft_printf("Field width:                   [%10d]\n", 42);
+    ft_printf("Use '-' flag with field width: [%-10d]\n", 42);
+    ft_printf("Use '0' flag with field width: [%010d]\n", 42);
+    ft_printf("Use '.' flag with field width: [%.10d]\n", 42);
+    ft_printf("Use '.' flag with field width: [%.10d]\n", -42);
     ft_printf("Use '#' flag: [%#x]\n", 42);
-    ft_printf("Use ' ' flag: [% d]\n", 42);
-    ft_printf("Use ' ' flag: [% d]\n", -42);
-    ft_printf("Use '+' flag: [%+d]\n", 42);
-    ft_printf("Use '+' flag: [%+d]\n", -42);
-    ft_printf("Use '+' flag: [%+d]\n", "aaa");
-
+    ft_printf("Use '(space)' flag with plus integer:  [% d]\n", 42);
+    ft_printf("Use '(space)' flag with minus integer: [% d]\n", -42);
+    ft_printf("Use '+' flag with plus integer:  [%+d]\n", 42);
+    ft_printf("Use '+' flag with minus integer: [%+d]\n", -42);
 }
